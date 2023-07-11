@@ -1,14 +1,12 @@
 import Header from './components/Header/Header';
-import './App.scss';
-import Clients from './components/Clients/Clients';
+import Main from './components/Main/Main';
+import './scss/App.scss';
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <main className="main">
-        <Clients />
-      </main>
+      <Main />
     </div>
   );
 };

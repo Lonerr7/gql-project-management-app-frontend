@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import './reset.scss';
-import './index.scss';
+import './scss/reset.scss';
+import './scss/index.scss';
 import App from './App';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
