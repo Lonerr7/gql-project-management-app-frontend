@@ -2,7 +2,13 @@ import ReactDOM from 'react-dom/client';
 import './scss/reset.scss';
 import './scss/index.scss';
 import App from './App';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  gql,
+} from '@apollo/client';
+import { createFragmentRegistry } from '@apollo/client/cache';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -21,6 +27,14 @@ const cache = new InMemoryCache({
       },
     },
   },
+  fragments: createFragmentRegistry(gql`
+    fragment ClientFragment on Client {
+      id
+      name
+      email
+      phone
+    }
+  `),
 });
 
 const client = new ApolloClient({

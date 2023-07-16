@@ -11,6 +11,26 @@
     width: 100px;
     height: 100px;
   }
+
+  &__addBtn {
+    transition: all 0.2s;
+    padding: 5px 10px;
+    color: $color3;
+    font-weight: 500;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    background-color: $color6;
+    margin-bottom: 10px;
+
+    &:hover {
+      background-color: $color6Hover;
+    }
+  }
+
+  &__addIcon {
+    margin-right: 5px;
+  }
 }
 
 .client {

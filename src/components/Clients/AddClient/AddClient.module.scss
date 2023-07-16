@@ -1,0 +1,66 @@
+@import '../../../scss/vars';
+
+.addClient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.352);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__inner {
+    width: 500px;
+    padding: 15px;
+    background-color: $color2;
+    border-radius: 8px;
+  }
+
+  &__closeIcon {
+    transition: all 0.2s;
+
+    &:hover {
+      color: $color5;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $color4;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__formControl {
+    margin-bottom: 10px;
+  }
+
+  &__formControl_last {
+    margin-bottom: 30px;
+  }
+
+  &__formLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  &__formInput {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
+
+  &__formSend {
+    
+  }
+}
