@@ -1,3 +1,4 @@
+import s from './FormControl.module.scss';
 import { Field, ErrorMessage } from 'formik';
 
 const FormControl = ({
@@ -10,7 +11,7 @@ const FormControl = ({
   customErrorCName,
 }) => {
   return (
-    <div className={wrapperCName}>
+    <div className={`${s.control} ${wrapperCName}`}>
       <label className={labelCName} htmlFor={field}>
         {labelData}
       </label>
@@ -21,7 +22,11 @@ const FormControl = ({
         placeholder={placeholder}
       />
       <ErrorMessage name={field}>
-        {(err) => <p className={`error ${customErrorCName}`}>{err}</p>}
+        {(err) => (
+          <p className={`error ${customErrorCName} ${s.control__errorMsg}`}>
+            {err}
+          </p>
+        )}
       </ErrorMessage>
     </div>
   );

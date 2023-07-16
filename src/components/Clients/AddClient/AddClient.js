@@ -1,13 +1,17 @@
-import { Form, Formik } from 'formik';
 import s from './AddClient.module.scss';
+import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import FormControl from '../../common/FormControl/FormControl';
 import { ImCross } from 'react-icons/im';
+import SubmitLoadingBtn from '../../common/SubmitLoadingBtn/SubmitLoadingBtn';
+import { useMutation } from '@apollo/client';
+import { ADD_CLIENT } from '../../../graphql/mutations/ADD_CLIENT';
+import { GET_CLIENTS } from '../../../graphql/quieries/GET_CLIENTS';
 
 const initialValues = {
-  name: '',
-  email: '',
-  phone: '',
+  name: 'test',
+  email: 'test@gmail.com',
+  phone: '1234',
 };
 
 const validationSchema = yup.object({
@@ -26,7 +30,27 @@ const validationSchema = yup.object({
 });
 
 const AddClient = ({ modalOpeningHandler }) => {
-  const onSubmit = (values) => {};
+  const [addClient, { loading, error }] = useMutation(ADD_CLIENT, {
+    update(cache, { data: { addClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        data: { clients: [...clients, addClient] },
+      });
+    },
+  });
+
+  const onSubmit = async ({ name, phone, email }) => {
+    await addClient({
+      variables: {
+        name,
+        phone,
+        email,
+      },
+    });
+    modalOpeningHandler();
+  };
 
   return (
     <div className={s.addClient}>
@@ -74,9 +98,21 @@ const AddClient = ({ modalOpeningHandler }) => {
               placeholder="Enter your phone"
               customErrorCName={`error ${s.addClient__formError}`}
             />
-            <button className={s.addClient__formSend} type="submit">
-              Submit
-            </button>
+
+            <SubmitLoadingBtn
+              btnClass={s.addClient__formSend}
+              btnText="Add"
+              btnFetchingText="Adding"
+              btnType="submit"
+              isFetching={loading}
+              onSubmit={() => {}}
+            />
+
+            {error ? (
+              <p className={`error ${s.addClient__errorMsg}`}>
+                {error.message}
+              </p>
+            ) : null}
           </Form>
         </Formik>
       </div>

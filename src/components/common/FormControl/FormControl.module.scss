@@ -1,0 +1,10 @@
+.control {
+  position: relative;
+  padding-bottom: 20px;
+
+  &__errorMsg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
