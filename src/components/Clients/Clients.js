@@ -1,17 +1,7 @@
 import s from './Clients.module.scss';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import Client from './Client';
-
-const GET_CLIENTS = gql`
-  query Clients {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
 
 const Clients = () => {
   const { loading, data, error } = useQuery(GET_CLIENTS);
@@ -25,7 +15,13 @@ const Clients = () => {
   }
 
   const clients = data.clients.map((c) => (
-    <Client key={c.id} name={c.name} phone={c.phone} email={c.email} />
+    <Client
+      key={c.id}
+      id={c.id}
+      name={c.name}
+      phone={c.phone}
+      email={c.email}
+    />
   ));
 
   return (
