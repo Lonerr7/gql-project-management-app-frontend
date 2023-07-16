@@ -3,9 +3,10 @@ import s from './Clients.module.scss';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../../graphql/mutations/DELETE_CLIENT';
 import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
+import Preloader from '../common/Preloader/Preloader';
 
 const Client = ({ id, name, email, phone }) => {
-  const [deleteClient, { data, error, loading }] = useMutation(DELETE_CLIENT, {
+  const [deleteClient, { error, loading }] = useMutation(DELETE_CLIENT, {
     variables: {
       id,
     },
@@ -20,12 +21,23 @@ const Client = ({ id, name, email, phone }) => {
 
   return (
     <li className={s.client}>
-      <p className={s.client__info}>{name}</p>
-      <p className={s.client__info}>{email}</p>
-      <p className={s.client__info}>{phone}</p>
-      <button className={s.client__delete} onClick={deleteClient}>
-        <MdDelete className={s.client__icon} size={22} />
-      </button>
+      <div className={s.client__inner}>
+        <p className={s.client__info}>{name}</p>
+        <a
+          className={`${s.client__info} ${s.client__email}`}
+          href={`mailto:${email}`}
+        >
+          {email}
+        </a>
+        <p className={s.client__info}>{phone}</p>
+        <div className={s.client__controls}>
+          {loading ? <Preloader customCName={s.client__preloader} /> : null}
+          <button className={s.client__delete} onClick={deleteClient}>
+            <MdDelete className={s.client__icon} size={22} />
+          </button>
+        </div>
+      </div>
+      {error ? <p className={`error ${s.client__error}`}>{error}</p> : null}
     </li>
   );
 };

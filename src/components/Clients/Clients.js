@@ -2,19 +2,12 @@ import s from './Clients.module.scss';
 import { useQuery } from '@apollo/client';
 import Client from './Client';
 import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
+import Preloader from '../common/Preloader/Preloader';
 
 const Clients = () => {
   const { loading, data, error } = useQuery(GET_CLIENTS);
 
-  if (error) {
-    return <p>{error}</p>;
-  }
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  const clients = data.clients.map((c) => (
+  const clients = data?.clients.map((c) => (
     <Client
       key={c.id}
       id={c.id}
@@ -27,7 +20,13 @@ const Clients = () => {
   return (
     <div className={s.clients}>
       <p className={s.clients__title}>Clients</p>
-      <ul className={s.clients__list}>{clients}</ul>
+      {loading ? (
+        <Preloader customCName={s.clients__preloader} />
+      ) : error ? (
+        <p className={`error ${s.error}`}>{error}</p>
+      ) : (
+        <ul className={s.clients__list}>{clients}</ul>
+      )}
     </div>
   );
 };

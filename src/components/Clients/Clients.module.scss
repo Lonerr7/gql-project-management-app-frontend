@@ -6,17 +6,30 @@
     margin-bottom: 30px;
     font-weight: 700;
   }
+
+  &__preloader {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .client {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid $color4;
 
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__info {
     font-size: 20px;
+    display: block;
+  }
+
+  &__email:hover {
+    text-decoration: underline;
   }
 
   &__delete {
@@ -33,4 +46,28 @@
   &__icon {
     color: $color3;
   }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+  }
+
+  &__preloader {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  &__error {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+}
+
+.error {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
 }
