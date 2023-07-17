@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import s from './Projects.module.scss';
 
-const Project = ({ name, id, status }) => {
+const ProjectSm = ({ name, id, status }) => {
   return (
     <li className={s.project}>
       <div className={s.project__box}>
         <h2 className={s.project__title}>{name}</h2>
-        <Link className={s.project__link} to={`/project/${id}`}>
+        <Link className={s.project__link} to={`/projects/${id}`}>
           View
         </Link>
       </div>
@@ -17,4 +17,4 @@ const Project = ({ name, id, status }) => {
   );
 };
 
-export default Project;
+export default ProjectSm;

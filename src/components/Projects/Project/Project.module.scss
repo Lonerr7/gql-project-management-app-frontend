@@ -1,0 +1,79 @@
+@import '../../../scss/vars';
+
+.project {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid $color8;
+  border-radius: 8px;
+  font-size: 20px;
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-right: 40px;
+  }
+
+  &__goBack {
+    @extend %project-btn;
+    font-weight: 500;
+    width: 80px;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $color7Hover;
+    }
+  }
+
+  &__descr {
+    color: $color4;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  &__statusBox {
+    margin-bottom: 80px;
+  }
+
+  &__statusTitle {
+    @extend %project-subtitle;
+  }
+
+  &__status {
+    font-size: 18px;
+    color: $color4;
+  }
+}
+
+.info {
+  width: 100%;
+
+  &__title {
+    @extend %project-subtitle;
+  }
+
+  &__box {
+    padding: 15px 20px;
+    border: 1px solid $color8;
+    border-radius: 8px;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color8;
+  }
+
+  &__icon {
+    margin-right: 5px;
+  }
+}

@@ -5,11 +5,6 @@
     @extend %page-title;
   }
 
-  &__preloader {
-    width: 100px;
-    height: 100px;
-  }
-
   &__addBtn {
     transition: all 0.2s;
     padding: 5px 10px;
@@ -43,11 +38,26 @@
 
   &__info {
     font-size: 20px;
-    display: block;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-right: 5px;
+  }
+
+  &__iconEmail {
+    margin-top: 4px;
   }
 
   &__email:hover {
     text-decoration: underline;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    width: 80px;
   }
 
   &__delete {
@@ -55,23 +65,21 @@
     background-color: $color5;
     border-radius: 5px;
     transition: all 0.2s;
+    margin: 0 0 0 auto;
 
     &:hover {
       background-color: $color5Hover;
     }
   }
 
-  &__icon {
+  &__deleteIcon {
     color: $color3;
   }
 
-  &__controls {
-    display: flex;
-    align-items: center;
-  }
-
   &__preloader {
-    @extend %preloader;
+    width: 30px;
+    height: 30px;
+    // margin-right: 10px;
   }
 
   &__error {

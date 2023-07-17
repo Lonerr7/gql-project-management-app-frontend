@@ -1,11 +1,6 @@
 @import '../../scss/vars';
 
 .projects {
-  &__preloader {
-    width: 100px;
-    height: 100px;
-  }
-
   &__title {
     @extend %page-title;
   }
@@ -37,11 +32,7 @@
   }
 
   &__link {
-    display: block;
-    background-color: $color7;
-    border-radius: 8px;
-    padding: 10px;
-    transition: all 0.2s;
+    @extend %project-btn;
 
     &:hover {
       background-color: $color7Hover;

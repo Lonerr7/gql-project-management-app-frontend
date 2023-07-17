@@ -30,7 +30,7 @@ const Clients = () => {
       {isOpen ? <AddClient modalOpeningHandler={modalOpeningHandler} /> : null}
 
       {loading ? (
-        <Preloader customCName={s.clients__preloader} />
+        <Preloader />
       ) : error ? (
         <p className={s.error}>{error}</p>
       ) : (

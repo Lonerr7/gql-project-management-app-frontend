@@ -28,7 +28,16 @@ $color8: rgb(173, 173, 173);
   color: red;
 }
 
-%preloader {
-  width: 30px;
-  height: 30px;
+%project-btn {
+  display: block;
+  background-color: $color7;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.2s;
+}
+
+%project-subtitle {
+  font-size: 22px;
+  margin-bottom: 6px;
+  font-weight: 500;
 }

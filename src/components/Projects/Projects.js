@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { GET_PROJECTS } from '../../graphql/quieries/GET_PROJECTS';
 import s from './Projects.module.scss';
-import Project from './Project';
+import ProjectSm from './ProjectSm';
 import Preloader from '../common/Preloader/Preloader';
 
 const Projects = () => {
   const { data, loading, error } = useQuery(GET_PROJECTS);
 
   const projects = data?.projects.map((p) => (
-    <Project key={p.id} id={p.id} name={p.name} status={p.status} />
+    <ProjectSm key={p.id} id={p.id} name={p.name} status={p.status} />
   ));
 
   return (

@@ -1,5 +1,7 @@
-import { MdDelete } from 'react-icons/md';
 import s from './Clients.module.scss';
+import { MdDelete, MdEmail } from 'react-icons/md';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { AiFillPhone } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../../graphql/mutations/DELETE_CLIENT';
 import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
@@ -10,6 +12,7 @@ const Client = ({ id, name, email, phone }) => {
     variables: {
       id,
     },
+
     update(cache, { data: { deleteClient } }) {
       const { clients } = cache.readQuery({ query: GET_CLIENTS });
       cache.writeQuery({
@@ -22,18 +25,28 @@ const Client = ({ id, name, email, phone }) => {
   return (
     <li className={s.client}>
       <div className={s.client__inner}>
-        <p className={s.client__info}>{name}</p>
+        <p className={s.client__info}>
+          <BsFillPersonFill className={s.client__icon} size={21} />
+          {name}
+        </p>
         <a
           className={`${s.client__info} ${s.client__email}`}
           href={`mailto:${email}`}
         >
+          <MdEmail
+            className={`${s.client__icon} ${s.client__iconEmail}`}
+            size={21}
+          />
           {email}
         </a>
-        <p className={s.client__info}>{phone}</p>
+        <a className={s.client__info} href={`tel:${phone}`}>
+          <AiFillPhone className={s.client__icon} size={21} />
+          {phone}
+        </a>
         <div className={s.client__controls}>
           {loading ? <Preloader customCName={s.client__preloader} /> : null}
           <button className={s.client__delete} onClick={deleteClient}>
-            <MdDelete className={s.client__icon} size={22} />
+            <MdDelete className={s.client__deleteIcon} size={22} />
           </button>
         </div>
       </div>
