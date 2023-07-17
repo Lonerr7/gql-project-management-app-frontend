@@ -26,21 +26,24 @@ const Clients = () => {
   ));
 
   return (
-    <div className={s.clients}>
+    <section className={s.clients}>
       {isOpen ? <AddClient modalOpeningHandler={modalOpeningHandler} /> : null}
-      <h1 className={s.clients__title}>Clients</h1>
-      <button className={s.clients__addBtn} onClick={modalOpeningHandler}>
-        <BsPersonFill className={s.clients__addIcon} size={24} />
-        Add Client
-      </button>
+
       {loading ? (
         <Preloader customCName={s.clients__preloader} />
       ) : error ? (
-        <p className={`error ${s.error}`}>{error}</p>
+        <p className={s.error}>{error}</p>
       ) : (
-        <ul className={s.clients__list}>{clients}</ul>
+        <>
+          <h1 className={s.clients__title}>Clients</h1>
+          <button className={s.clients__addBtn} onClick={modalOpeningHandler}>
+            <BsPersonFill className={s.clients__addIcon} size={24} />
+            Add Client
+          </button>
+          <ul className={s.clients__list}>{clients}</ul>
+        </>
       )}
-    </div>
+    </section>
   );
 };
 

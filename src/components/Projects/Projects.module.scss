@@ -1,0 +1,58 @@
+@import '../../scss/vars';
+
+.projects {
+  &__preloader {
+    width: 100px;
+    height: 100px;
+  }
+
+  &__title {
+    @extend %page-title;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+.project {
+  font-size: 16px;
+  border: 1px solid $color8;
+  border-radius: 8px;
+  padding: 15px 10px 40px 10px;
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+  }
+
+  &__link {
+    display: block;
+    background-color: $color7;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $color7Hover;
+    }
+  }
+
+  &__status {
+    margin-right: 15px;
+  }
+
+  &__status_bold {
+    font-weight: 500;
+  }
+}

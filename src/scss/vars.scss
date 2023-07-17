@@ -9,3 +9,25 @@ $color5: rgb(220, 28, 28);
 $color5Hover: rgb(165, 29, 29);
 $color6: rgb(100, 24, 238);
 $color6Hover: rgb(86, 34, 183);
+$color7: rgb(246, 248, 250);
+$color7Hover: rgba(206, 206, 206, 0.777);
+$color8: rgb(173, 173, 173);
+
+// === templates ===
+%page-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+%error {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  color: red;
+}
+
+%preloader {
+  width: 30px;
+  height: 30px;
+}

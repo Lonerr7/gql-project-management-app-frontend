@@ -1,17 +1,11 @@
-import { gql } from "@apollo/client";
-
+import { gql } from '@apollo/client';
 
 export const GET_PROJECTS = gql`
-  Projects {
+  query Projects {
     projects {
       id
       name
       status
-      description
-      client {
-        id
-        name
-      }
     }
   }
-`
+`;
