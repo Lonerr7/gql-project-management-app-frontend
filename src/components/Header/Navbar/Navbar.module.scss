@@ -1,10 +1,14 @@
 @import '../../../scss/vars';
 
 .navbar {
+  display: flex;
+  align-items: center;
+
   &__link {
     display: flex;
     align-items: center;
     max-width: 200px;
+    margin-right: 60px;
   }
 
   &__logo {
@@ -16,5 +20,25 @@
   &__linkText {
     color: $color1;
     font-size: 24px;
+  }
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 139px;
+
+  &__link {
+    font-size: 18px;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__link_active {
+    font-weight: 500;
   }
 }

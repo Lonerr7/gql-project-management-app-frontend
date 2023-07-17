@@ -9,6 +9,7 @@ import {
   gql,
 } from '@apollo/client';
 import { createFragmentRegistry } from '@apollo/client/cache';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -45,6 +46,8 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>
 );

@@ -28,7 +28,7 @@ const Clients = () => {
   return (
     <div className={s.clients}>
       {isOpen ? <AddClient modalOpeningHandler={modalOpeningHandler} /> : null}
-      <p className={s.clients__title}>Clients</p>
+      <h1 className={s.clients__title}>Clients</h1>
       <button className={s.clients__addBtn} onClick={modalOpeningHandler}>
         <BsPersonFill className={s.clients__addIcon} size={24} />
         Add Client
