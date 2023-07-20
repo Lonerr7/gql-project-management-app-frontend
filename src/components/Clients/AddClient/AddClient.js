@@ -1,4 +1,4 @@
-import s from './AddClient.module.scss';
+import s from '../../../scss/addModal.module.scss';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import FormControl from '../../common/FormControl/FormControl';
@@ -53,15 +53,12 @@ const AddClient = ({ modalOpeningHandler }) => {
   };
 
   return (
-    <div className={s.addClient}>
-      <div className={s.addClient__inner}>
-        <div className={s.addClient__top}>
-          <h2 className={s.addClient__title}>Add Client</h2>
-          <button
-            className={s.addClient__closeBtn}
-            onClick={modalOpeningHandler}
-          >
-            <ImCross className={s.addClient__closeIcon} size={17} />
+    <div className={s.add}>
+      <div className={s.add__inner}>
+        <div className={s.add__top}>
+          <h2 className={s.add__title}>Add Client</h2>
+          <button className={s.add__closeBtn} onClick={modalOpeningHandler}>
+            <ImCross className={s.add__closeIcon} size={17} />
           </button>
         </div>
 
@@ -70,37 +67,37 @@ const AddClient = ({ modalOpeningHandler }) => {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          <Form className={s.addClient__form}>
+          <Form className={s.add__form}>
             <FormControl
-              wrapperCName={s.addClient__formControl}
-              labelCName={s.addClient__formLabel}
-              inputCName={s.addClient__formInput}
+              wrapperCName={s.add__formControl}
+              labelCName={s.add__formLabel}
+              inputCName={s.add__formInput}
               field="name"
               labelData="Name"
               placeholder="Enter your name"
-              customErrorCName={`error ${s.addClient__formError}`}
+              customErrorCName={`error ${s.add__formError}`}
             />
             <FormControl
-              wrapperCName={s.addClient__formControl}
-              labelCName={s.addClient__formLabel}
-              inputCName={s.addClient__formInput}
+              wrapperCName={s.add__formControl}
+              labelCName={s.add__formLabel}
+              inputCName={s.add__formInput}
               field="email"
               labelData="Email"
               placeholder="Enter your email"
-              customErrorCName={`error ${s.addClient__formError}`}
+              customErrorCName={`error ${s.add__formError}`}
             />
             <FormControl
-              wrapperCName={`${s.addClient__formControl} ${s.addClient__formControl_last}`}
-              labelCName={s.addClient__formLabel}
-              inputCName={s.addClient__formInput}
+              wrapperCName={`${s.add__formControl} ${s.add__formControl_last}`}
+              labelCName={s.add__formLabel}
+              inputCName={s.add__formInput}
               field="phone"
               labelData="Phone"
               placeholder="Enter your phone"
-              customErrorCName={`error ${s.addClient__formError}`}
+              customErrorCName={`error ${s.add__formError}`}
             />
 
             <SubmitLoadingBtn
-              btnClass={s.addClient__formSend}
+              btnClass={s.add__formSend}
               btnText="Add"
               btnFetchingText="Adding"
               btnType="submit"
@@ -108,11 +105,7 @@ const AddClient = ({ modalOpeningHandler }) => {
               onSubmit={() => {}}
             />
 
-            {error ? (
-              <p className={`error ${s.addClient__errorMsg}`}>
-                {error.message}
-              </p>
-            ) : null}
+            {error ? <p className={s.add__errorMsg}>{error.message}</p> : null}
           </Form>
         </Formik>
       </div>

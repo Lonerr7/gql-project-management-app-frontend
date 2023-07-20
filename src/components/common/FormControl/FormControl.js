@@ -9,6 +9,7 @@ const FormControl = ({
   labelData,
   placeholder,
   customErrorCName,
+  component,
 }) => {
   return (
     <div className={`${s.control} ${wrapperCName}`}>
@@ -20,12 +21,11 @@ const FormControl = ({
         name={field}
         id={field}
         placeholder={placeholder}
+        component={component}
       />
       <ErrorMessage name={field}>
         {(err) => (
-          <p className={`error ${customErrorCName} ${s.control__errorMsg}`}>
-            {err}
-          </p>
+          <p className={`${customErrorCName} ${s.control__errorMsg}`}>{err}</p>
         )}
       </ErrorMessage>
     </div>

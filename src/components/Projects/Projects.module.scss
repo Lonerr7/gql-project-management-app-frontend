@@ -10,6 +10,20 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
   }
+
+  &__addBtn {
+    @extend %add-btn;
+    background-color: $color1;
+    margin-bottom: 30px;
+
+    &:hover {
+      background-color: $color1Hover;
+    }
+  }
+
+  &__addIcon {
+    margin-right: 5px;
+  }
 }
 
 .project {
