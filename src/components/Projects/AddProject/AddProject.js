@@ -3,11 +3,17 @@ import * as yup from 'yup';
 import { ImCross } from 'react-icons/im';
 import { Formik } from 'formik';
 import AddProjectForm from './AddProjectForm';
+import { useQuery } from '@apollo/client';
+import { GET_CLIENTS_FOR_SELECT } from '../../../graphql/quieries/GET_CLIENTS';
+import { projectStatus } from '../../../utils/projectStatus';
+
+const { NOT_STARTED, IN_PROGRESS, COMPLETED } = projectStatus;
 
 const initialValues = {
   name: '',
   description: '',
   status: '',
+  client: '',
 };
 
 const validationSchema = yup.object({
@@ -19,15 +25,34 @@ const validationSchema = yup.object({
     .string()
     .max(100, 'Description must not be more than 100 characters')
     .required('Enter your project description'),
+  status: yup.string().required(),
 });
 
 const AddProject = ({ modalOpeningHandler }) => {
-  const onSubmit = (values, { setFieldError }) => {
-    console.log(values);
+  // const [clientSelectOptions, setClientSelectOptions] = useState(null);
+  const {
+    data,
+    loading: areClientsLoading,
+    error,
+  } = useQuery(GET_CLIENTS_FOR_SELECT);
 
-    if (!values.status) {
-      setFieldError('status', 'Please, select your status!');
-    }
+  const statusSelectOptions = [
+    { value: NOT_STARTED, label: 'Not Started' },
+    { value: IN_PROGRESS, label: 'In Progress' },
+    { value: COMPLETED, label: 'Completed' },
+  ];
+  let clientsSelectOptions = [];
+
+  // Creating options for clients select
+  if (data?.clients) {
+    clientsSelectOptions = data.clients.map((c) => ({
+      label: c.name,
+      value: c.name,
+    }));
+  }
+
+  const onSubmit = (values) => {
+    console.log(values);
   };
 
   return (
@@ -44,8 +69,14 @@ const AddProject = ({ modalOpeningHandler }) => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
+          validateOnBlur={false}
         >
-          <AddProjectForm initialValues={initialValues} />
+          <AddProjectForm
+            initialValues={initialValues}
+            statusSelectOptions={statusSelectOptions}
+            clientsSelectOptions={clientsSelectOptions}
+            areClientsLoading={areClientsLoading}
+          />
         </Formik>
       </div>
     </div>

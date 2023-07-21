@@ -1,30 +1,26 @@
 import Select from 'react-select';
-import { projectStatus } from '../../../utils/projectStatus';
 
-const { NOT_STARTED, IN_PROGRESS, COMPLETED } = projectStatus;
-
-const SelectField = ({ onSelectChange, defaultValue }) => {
-  const selectOtions = [
-    { value: NOT_STARTED, label: 'Not Started' },
-    { value: IN_PROGRESS, label: 'In Progress' },
-    { value: COMPLETED, label: 'Completed' },
-  ];
-
+const SelectField = ({ selectOptions, onSelectChange, defaultValue }) => {
   return (
     <Select
-      options={selectOtions}
+      options={selectOptions}
       onChange={onSelectChange}
       defaultInputValue={defaultValue}
     />
   );
 };
 
-const withOnSelectChangeSelect = (onSelectChange, defaultValue) => {
+const withOnSelectChangeSelect = (
+  selectOptions,
+  onSelectChange,
+  defaultValue
+) => {
   const NewComponent = () => {
     return (
       <SelectField
         onSelectChange={onSelectChange}
         defaultValue={defaultValue}
+        selectOptions={selectOptions}
       />
     );
   };

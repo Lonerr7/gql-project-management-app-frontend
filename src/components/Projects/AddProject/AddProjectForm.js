@@ -6,24 +6,29 @@ import { useEffect } from 'react';
 import SubmitLoadingBtn from '../../common/SubmitLoadingBtn/SubmitLoadingBtn';
 import withOnSelectChangeSelect from '../../common/SelectField/SelectField';
 
-const AddProjectForm = () => {
-  const { values, initialValues, submitForm } = useFormikContext();
+const AddProjectForm = ({
+  statusSelectOptions,
+  clientsSelectOptions,
+  areClientsLoading,
+}) => {
+  const { values, initialValues, setFieldError } = useFormikContext();
 
-  const onSelectChange = (newValue) => {
-    values.status = newValue.value;
+  const onStatusSelectChange = (newValue) => {
     initialValues.status = newValue.value;
+    values.status = newValue.value;
+    setFieldError('status');
   };
 
   useEffect(() => {
-    console.log(values, initialValues);
-
     return () => {
       values.status = '';
       initialValues.status = '';
+      values.client = '';
+      initialValues.client = '';
     };
 
     // eslint-disable-next-line
-  }, [values]);
+  }, []);
 
   return (
     <Form className={st.add__form}>
@@ -54,11 +59,33 @@ const AddProjectForm = () => {
         labelData="Project Status"
         placeholder="Enter a project's status"
         customErrorCName={st.add__formError}
-        component={withOnSelectChangeSelect(onSelectChange, values.status)}
+        component={withOnSelectChangeSelect(
+          statusSelectOptions,
+          onStatusSelectChange,
+          values.status
+        )}
       />
+      {areClientsLoading ? (
+        'loading...'
+      ) : (
+        <FormControl
+          wrapperCName={st.add__formControl}
+          labelCName={st.add__formLabel}
+          inputCName={`${st.add__formInput} ${s.add__select}`}
+          field="status"
+          labelData="Clients"
+          placeholder="Enter a project owner"
+          customErrorCName={st.add__formError}
+          component={withOnSelectChangeSelect(
+            clientsSelectOptions,
+            onStatusSelectChange,
+            values.status
+          )}
+        />
+      )}
 
       <SubmitLoadingBtn
-        btnClass={s.add__formSend}
+        btnClass={`${st.add__formSend} ${s.add__btn}`}
         btnText="Add"
         btnFetchingText="Adding"
         btnType="submit"

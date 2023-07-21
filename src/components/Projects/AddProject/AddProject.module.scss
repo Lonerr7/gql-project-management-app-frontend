@@ -1,8 +1,18 @@
+@import '../../../scss/vars';
+
 .add {
   &__textarea {
     font-size: 16px;
     resize: vertical;
     min-height: 100px;
     max-height: 300px;
+  }
+
+  &__btn {
+    background-color: $color1;
+
+    &:hover {
+      background-color: $color1Hover;
+    }
   }
 }

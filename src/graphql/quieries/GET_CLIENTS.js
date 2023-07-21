@@ -7,3 +7,12 @@ export const GET_CLIENTS = gql`
     }
   }
 `;
+
+export const GET_CLIENTS_FOR_SELECT = gql`
+  query ClientsForSelect {
+    clients {
+      id
+      name
+    }
+  }
+`;

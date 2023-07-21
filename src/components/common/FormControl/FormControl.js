@@ -13,7 +13,7 @@ const FormControl = ({
 }) => {
   return (
     <div className={`${s.control} ${wrapperCName}`}>
-      <label className={labelCName} htmlFor={field}>
+      <label className={labelCName} htmlFor={field} tabIndex={-1}>
         {labelData}
       </label>
       <Field
