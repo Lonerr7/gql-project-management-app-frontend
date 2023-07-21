@@ -25,11 +25,11 @@ const validationSchema = yup.object({
     .string()
     .max(100, 'Description must not be more than 100 characters')
     .required('Enter your project description'),
-  status: yup.string().required(),
+  status: yup.string().required("Select project's status"),
+  client: yup.string().required('Select a client for a project'),
 });
 
 const AddProject = ({ modalOpeningHandler }) => {
-  // const [clientSelectOptions, setClientSelectOptions] = useState(null);
   const {
     data,
     loading: areClientsLoading,
@@ -76,6 +76,7 @@ const AddProject = ({ modalOpeningHandler }) => {
             statusSelectOptions={statusSelectOptions}
             clientsSelectOptions={clientsSelectOptions}
             areClientsLoading={areClientsLoading}
+            clientsLoadingError={error}
           />
         </Formik>
       </div>

@@ -14,5 +14,13 @@
     &:hover {
       background-color: $color1Hover;
     }
+
+    &:disabled {
+      background-color: $color1Disabled;
+    }
   }
+}
+
+.error {
+  @extend %error;
 }

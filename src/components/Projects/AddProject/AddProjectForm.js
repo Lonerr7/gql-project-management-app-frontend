@@ -10,6 +10,7 @@ const AddProjectForm = ({
   statusSelectOptions,
   clientsSelectOptions,
   areClientsLoading,
+  clientsLoadingError,
 }) => {
   const { values, initialValues, setFieldError } = useFormikContext();
 
@@ -17,6 +18,12 @@ const AddProjectForm = ({
     initialValues.status = newValue.value;
     values.status = newValue.value;
     setFieldError('status');
+  };
+
+  const onClientSelectChange = (newValue) => {
+    initialValues.client = newValue.value;
+    values.client = newValue.value;
+    setFieldError('client');
   };
 
   useEffect(() => {
@@ -62,24 +69,33 @@ const AddProjectForm = ({
         component={withOnSelectChangeSelect(
           statusSelectOptions,
           onStatusSelectChange,
-          values.status
+          values.status,
+          "Select project's status",
+          {
+            isClearable: true,
+          }
         )}
       />
-      {areClientsLoading ? (
-        'loading...'
+      {clientsLoadingError ? (
+        <p className={s.error}>{clientsLoadingError.error}</p>
       ) : (
         <FormControl
           wrapperCName={st.add__formControl}
           labelCName={st.add__formLabel}
           inputCName={`${st.add__formInput} ${s.add__select}`}
-          field="status"
-          labelData="Clients"
+          field="client"
+          labelData="Client"
           placeholder="Enter a project owner"
           customErrorCName={st.add__formError}
           component={withOnSelectChangeSelect(
             clientsSelectOptions,
-            onStatusSelectChange,
-            values.status
+            onClientSelectChange,
+            values.client,
+            "Select project's client",
+            {
+              isClearable: true,
+              isLoading: areClientsLoading,
+            }
           )}
         />
       )}
