@@ -15,3 +15,8 @@
     color: $color3;
   }
 }
+
+.disabled {
+  cursor: default;
+  background-color: $color5Hover;
+}

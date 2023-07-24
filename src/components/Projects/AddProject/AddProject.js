@@ -25,7 +25,7 @@ const validationSchema = yup.object({
     .required('Enter a project name'),
   description: yup
     .string()
-    .max(100, 'Description must not be more than 100 characters')
+    .max(300, 'Description must not be more than 300 characters')
     .required('Enter your project description'),
   status: yup.string().required("Select project's status"),
   client: yup.string().required('Select a client for a project'),
@@ -47,7 +47,7 @@ const AddProject = ({ modalOpeningHandler }) => {
 
       cache.writeQuery({
         query: GET_PROJECTS,
-        data: { projects: [...projects, addProject] },
+        data: { projects: [addProject, ...projects] },
       });
     },
   });

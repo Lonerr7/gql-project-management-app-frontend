@@ -7,9 +7,18 @@ const DeleteBtn = ({
   defaultIconSize,
   defaultIconCName,
   onDelete,
+  disabled,
 }) => {
   return (
-    <button className={`${s.deleteBtn} ${btnCName}`} onClick={onDelete}>
+    <button
+      className={
+        disabled
+          ? `${s.deleteBtn} ${btnCName} ${s.disabled}`
+          : `${s.deleteBtn} ${btnCName}`
+      }
+      onClick={onDelete}
+      disabled={disabled}
+    >
       {Icon ? (
         Icon
       ) : (

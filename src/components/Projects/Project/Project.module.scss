@@ -50,10 +50,29 @@
     font-size: 18px;
     color: $color4;
   }
+
+  &__deleteBtn {
+    @extend %project-btn;
+    width: 100%;
+    font-size: 18px;
+    padding: 12px;
+    font-weight: 500;
+    background-color: $color5;
+    color: $color3;
+
+    &:hover {
+      background-color: $color5Hover;
+    }
+  }
+
+  &__deleteError {
+    margin-top: 20px;
+  }
 }
 
 .info {
   width: 100%;
+  margin-bottom: 20px;
 
   &__title {
     @extend %project-subtitle;
@@ -76,4 +95,11 @@
   &__icon {
     margin-right: 5px;
   }
+}
+
+.error,
+.project__deleteError {
+  @extend %error;
+  text-align: left;
+  font-size: 16px;
 }

@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_SINGLE_PROJECT } from '../../../graphql/quieries/GET_SINGLE_PROJECT';
 import Preloader from '../../common/Preloader/Preloader';
 import ProjectClientInfo from './ProjectClientInfo';
+import ProjectDelete from './ProjectDelete';
 
 const Project = () => {
   const { id } = useParams();
@@ -44,6 +45,8 @@ const Project = () => {
             email={data.project.client.email}
             phone={data.project.client.phone}
           />
+
+          <ProjectDelete projectId={id} />
         </>
       )}
     </div>

@@ -7,28 +7,25 @@ import { DELETE_PROJECT } from '../../graphql/mutations/DELETE_PROJECT';
 import { GET_PROJECTS } from '../../graphql/quieries/GET_PROJECTS';
 
 const ProjectSm = ({ name, id, status }) => {
-  const [deleteProject, { data, loading, error }] = useMutation(
-    DELETE_PROJECT,
-    {
-      update(cache, { data: { deleteProject } }) {
-        const { projects } = cache.readQuery({
-          query: GET_PROJECTS,
-        });
+  const [deleteProject, { loading, error }] = useMutation(DELETE_PROJECT, {
+    update(cache, { data: { deleteProject } }) {
+      const { projects } = cache.readQuery({
+        query: GET_PROJECTS,
+      });
 
-        cache.writeQuery({
-          query: GET_PROJECTS,
-          data: {
-            projects: projects.filter(
-              (project) => project.id !== deleteProject.id
-            ),
-          },
-        });
-      },
-      variables: {
-        id,
-      },
-    }
-  );
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: {
+          projects: projects.filter(
+            (project) => project.id !== deleteProject.id
+          ),
+        },
+      });
+    },
+    variables: {
+      id,
+    },
+  });
 
   const deleteProjectHander = () => {
     deleteProject();
@@ -49,13 +46,16 @@ const ProjectSm = ({ name, id, status }) => {
           </Link>
           <DeleteBtn
             btnCName={s.project__deleteBtn}
+            defaultIconSize={20}
             onDelete={deleteProjectHander}
+            disabled={loading}
           />
         </div>
       </div>
       <p className={s.project__status}>
         Status: <span className={s.project__status_bold}>{status}</span>
       </p>
+      {error ? <p className={s.project__error}>{error.message}</p> : null}
     </li>
   );
 };
