@@ -1,6 +1,6 @@
-export const shortenString = (string) => {
-  if (string.length >= 30) {
-    return `${string.slice(0, 30)}...`;
+export const shortenString = (string, maxLength) => {
+  if (string.length >= maxLength) {
+    return `${string.slice(0, maxLength)}...`;
   }
 
   return string;

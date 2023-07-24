@@ -53,22 +53,6 @@
     width: 80px;
   }
 
-  &__delete {
-    padding: 8px;
-    background-color: $color5;
-    border-radius: 5px;
-    transition: all 0.2s;
-    margin: 0 0 0 auto;
-
-    &:hover {
-      background-color: $color5Hover;
-    }
-  }
-
-  &__deleteIcon {
-    color: $color3;
-  }
-
   &__preloader {
     width: 30px !important;
     height: 30px !important;

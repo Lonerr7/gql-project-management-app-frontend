@@ -1,11 +1,12 @@
 import s from './Clients.module.scss';
-import { MdDelete, MdEmail } from 'react-icons/md';
+import { MdEmail } from 'react-icons/md';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiFillPhone } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../../graphql/mutations/DELETE_CLIENT';
 import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
 import Preloader from '../common/Preloader/Preloader';
+import DeleteBtn from '../common/DeleteBtn/DeleteBtn';
 
 const Client = ({ id, name, email, phone }) => {
   const [deleteClient, { error, loading }] = useMutation(DELETE_CLIENT, {
@@ -45,9 +46,7 @@ const Client = ({ id, name, email, phone }) => {
         </a>
         <div className={s.client__controls}>
           {loading ? <Preloader customCName={s.client__preloader} /> : null}
-          <button className={s.client__delete} onClick={deleteClient}>
-            <MdDelete className={s.client__deleteIcon} size={22} />
-          </button>
+          <DeleteBtn onDelete={deleteClient} />
         </div>
       </div>
       {error ? <p className={`error ${s.client__error}`}>{error}</p> : null}

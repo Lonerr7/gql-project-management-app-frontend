@@ -1,0 +1,17 @@
+@import '../../../scss/vars';
+
+.deleteBtn {
+  padding: 8px;
+  background-color: $color5;
+  border-radius: 5px;
+  transition: all 0.2s;
+  margin: 0 0 0 auto;
+
+  &:hover {
+    background-color: $color5Hover;
+  }
+
+  &__icon {
+    color: $color3;
+  }
+}

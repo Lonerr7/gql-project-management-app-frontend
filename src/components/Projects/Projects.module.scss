@@ -32,7 +32,8 @@
   border-radius: 8px;
   padding: 15px 10px 40px 10px;
 
-  &__box {
+  &__box,
+  &__controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,14 +44,24 @@
     font-size: 18px;
     line-height: 20px;
     font-weight: 700;
+    margin-right: 10px;
+  }
+
+  &__controls {
+    margin-bottom: 0;
   }
 
   &__link {
     @extend %project-btn;
+    margin-right: 8px;
 
     &:hover {
       background-color: $color7Hover;
     }
+  }
+
+  &__deleteBtn {
+    padding: 6px;
   }
 
   &__status {
