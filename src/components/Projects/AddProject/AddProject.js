@@ -3,8 +3,10 @@ import * as yup from 'yup';
 import { ImCross } from 'react-icons/im';
 import { Formik } from 'formik';
 import AddProjectForm from './AddProjectForm';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_CLIENTS_FOR_SELECT } from '../../../graphql/quieries/GET_CLIENTS';
+import { ADD_PROJECT } from '../../../graphql/mutations/ADD_PROJECT';
+import { GET_PROJECTS } from '../../../graphql/quieries/GET_PROJECTS';
 import { projectStatus } from '../../../utils/projectStatus';
 
 const { NOT_STARTED, IN_PROGRESS, COMPLETED } = projectStatus;
@@ -31,10 +33,24 @@ const validationSchema = yup.object({
 
 const AddProject = ({ modalOpeningHandler }) => {
   const {
-    data,
+    data: clientsForSelect,
     loading: areClientsLoading,
     error,
   } = useQuery(GET_CLIENTS_FOR_SELECT);
+
+  const [
+    addNewProject,
+    { loading: isProjectBeingAdded, error: addProjectError },
+  ] = useMutation(ADD_PROJECT, {
+    update(cache, { data: { addProject } }) {
+      const { projects } = cache.readQuery({ query: GET_PROJECTS });
+
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: { projects: [...projects, addProject] },
+      });
+    },
+  });
 
   const statusSelectOptions = [
     { value: NOT_STARTED, label: 'Not Started' },
@@ -44,15 +60,25 @@ const AddProject = ({ modalOpeningHandler }) => {
   let clientsSelectOptions = [];
 
   // Creating options for clients select
-  if (data?.clients) {
-    clientsSelectOptions = data.clients.map((c) => ({
+  if (clientsForSelect?.clients) {
+    console.log(clientsForSelect);
+
+    clientsSelectOptions = clientsForSelect.clients.map((c) => ({
       label: c.name,
-      value: c.name,
+      value: c.id,
     }));
   }
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async ({ name, client, description, status }) => {
+    await addNewProject({
+      variables: {
+        name,
+        description,
+        status,
+        clientId: client,
+      },
+    });
+    modalOpeningHandler();
   };
 
   return (
@@ -77,6 +103,8 @@ const AddProject = ({ modalOpeningHandler }) => {
             clientsSelectOptions={clientsSelectOptions}
             areClientsLoading={areClientsLoading}
             clientsLoadingError={error}
+            isProjectBeingAdded={isProjectBeingAdded}
+            addProjectError={addProjectError}
           />
         </Formik>
       </div>

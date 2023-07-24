@@ -11,6 +11,8 @@ const AddProjectForm = ({
   clientsSelectOptions,
   areClientsLoading,
   clientsLoadingError,
+  isProjectBeingAdded,
+  addProjectError,
 }) => {
   const { values, initialValues, setFieldError } = useFormikContext();
 
@@ -105,9 +107,13 @@ const AddProjectForm = ({
         btnText="Add"
         btnFetchingText="Adding"
         btnType="submit"
-        isFetching={false}
+        isFetching={isProjectBeingAdded}
         onSubmit={() => {}}
       />
+
+      {addProjectError ? (
+        <p className={s.add__errorMsg}>{addProjectError.message}</p>
+      ) : null}
     </Form>
   );
 };
