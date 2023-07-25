@@ -19,6 +19,10 @@
       background-color: $color1Disabled;
     }
   }
+
+  &__select {
+    font-size: 15px !important;
+  }
 }
 
 .error {

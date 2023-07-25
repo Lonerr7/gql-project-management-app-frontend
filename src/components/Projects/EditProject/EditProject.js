@@ -62,7 +62,10 @@ const EditProject = ({
           onSubmit={onSubmit}
           validateOnBlur={false}
         >
-          <EditProjectForm />
+          <EditProjectForm
+            isProjectBeingEdited={isProjectBeingEdited}
+            editProjectError={editProjectError}
+          />
         </Formik>
       </div>
     </div>

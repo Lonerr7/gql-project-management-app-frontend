@@ -57,7 +57,7 @@ const EditProjectForm = ({ isProjectBeingEdited, editProjectError }) => {
 
       <SubmitLoadingBtn
         btnClass={`${st.add__formSend} ${s.add__btn}`}
-        btnText="Edit"
+        btnText="Ok"
         btnFetchingText="Editing"
         btnType="submit"
         isFetching={isProjectBeingEdited}
