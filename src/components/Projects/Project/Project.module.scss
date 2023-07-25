@@ -51,12 +51,24 @@
     color: $color4;
   }
 
+  &__editBtn,
   &__deleteBtn {
     @extend %project-btn;
     width: 100%;
-    font-size: 18px;
     padding: 12px;
+    font-size: 18px;
     font-weight: 500;
+  }
+
+  &__editBtn {
+    margin-bottom: 20px;
+
+    &:hover {
+      background-color: $color7Hover;
+    }
+  }
+
+  &__deleteBtn {
     background-color: $color5;
     color: $color3;
 

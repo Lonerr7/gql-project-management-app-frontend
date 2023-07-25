@@ -5,6 +5,8 @@ import { GET_SINGLE_PROJECT } from '../../../graphql/quieries/GET_SINGLE_PROJECT
 import Preloader from '../../common/Preloader/Preloader';
 import ProjectClientInfo from './ProjectClientInfo';
 import ProjectDelete from './ProjectDelete';
+import { useState } from 'react';
+import EditProject from '../EditProject/EditProject';
 
 const Project = () => {
   const { id } = useParams();
@@ -14,6 +16,12 @@ const Project = () => {
       id,
     },
   });
+
+  const [editMode, setEditMode] = useState(false);
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
   const goBackHandler = () => {
     navigate(-1);
@@ -27,6 +35,15 @@ const Project = () => {
         <p className={s.error}>{error.message}</p>
       ) : (
         <>
+          {editMode ? (
+            <EditProject
+              id={id}
+              name={data.project.name}
+              description={data.project.description}
+              status={data.project.status}
+              modalOpeningHandler={toggleEditMode}
+            />
+          ) : null}
           <div className={s.project__box}>
             <h1 className={s.project__title}>{data.project.name}</h1>
             <button className={s.project__goBack} onClick={goBackHandler}>
@@ -46,7 +63,12 @@ const Project = () => {
             phone={data.project.client.phone}
           />
 
-          <ProjectDelete projectId={id} />
+          <div className={s.project__controls}>
+            <button className={s.project__editBtn} onClick={toggleEditMode}>
+              Edit Project
+            </button>
+            <ProjectDelete projectId={id} />
+          </div>
         </>
       )}
     </div>

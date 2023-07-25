@@ -35,6 +35,19 @@ const cache = new InMemoryCache({
       email
       phone
     }
+
+    fragment ProjectFragment on Project {
+      id
+      name
+      status
+      description
+      client {
+        id
+        name
+        email
+        phone
+      }
+    }
   `),
 });
 
