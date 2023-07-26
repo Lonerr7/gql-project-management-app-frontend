@@ -5,6 +5,7 @@ import { AiFillPhone } from 'react-icons/ai';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../../graphql/mutations/DELETE_CLIENT';
 import { GET_CLIENTS } from '../../graphql/quieries/GET_CLIENTS';
+import { GET_PROJECTS } from '../../graphql/quieries/GET_PROJECTS';
 import Preloader from '../common/Preloader/Preloader';
 import DeleteBtn from '../common/DeleteBtn/DeleteBtn';
 
@@ -14,13 +15,7 @@ const Client = ({ id, name, email, phone }) => {
       id,
     },
 
-    update(cache, { data: { deleteClient } }) {
-      const { clients } = cache.readQuery({ query: GET_CLIENTS });
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: { clients: clients.filter((c) => c.id !== deleteClient.id) },
-      });
-    },
+    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
   });
 
   return (
