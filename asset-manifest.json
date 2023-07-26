@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gql-project-management-app-frontend/static/css/main.2154a33d.css",
-    "main.js": "/gql-project-management-app-frontend/static/js/main.5d2ebe6c.js",
+    "main.js": "/gql-project-management-app-frontend/static/js/main.359ec803.js",
     "static/media/404.png": "/gql-project-management-app-frontend/static/media/404.ffea1f7a63c244f1c070.png",
     "static/media/preloader.gif": "/gql-project-management-app-frontend/static/media/preloader.757857ce13a4e4e598e4.gif",
     "index.html": "/gql-project-management-app-frontend/index.html",
     "main.2154a33d.css.map": "/gql-project-management-app-frontend/static/css/main.2154a33d.css.map",
-    "main.5d2ebe6c.js.map": "/gql-project-management-app-frontend/static/js/main.5d2ebe6c.js.map"
+    "main.359ec803.js.map": "/gql-project-management-app-frontend/static/js/main.359ec803.js.map"
   },
   "entrypoints": [
     "static/css/main.2154a33d.css",
-    "static/js/main.5d2ebe6c.js"
+    "static/js/main.359ec803.js"
   ]
 }
