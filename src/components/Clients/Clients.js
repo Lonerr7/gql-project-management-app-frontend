@@ -32,7 +32,7 @@ const Clients = () => {
       {loading ? (
         <Preloader />
       ) : error ? (
-        <p className={s.error}>{error}</p>
+        <p className={s.error}>{error.message}</p>
       ) : (
         <>
           <h1 className={s.clients__title}>Clients</h1>

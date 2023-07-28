@@ -24,6 +24,10 @@
   &__addIcon {
     margin-right: 5px;
   }
+
+  .error {
+    @extend %error;
+  }
 }
 
 .project {
